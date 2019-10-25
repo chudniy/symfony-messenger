@@ -2,3 +2,4 @@ var
 vendor
 /.env
 .idea
+node_modules
