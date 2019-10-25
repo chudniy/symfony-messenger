@@ -36,6 +36,10 @@ class AddPonkaToImageHandler implements MessageHandlerInterface, LoggerAwareInte
     
     public function __invoke(AddPonkaToImage $addPonkaToImage)
     {
+        if (rand(0, 10) < 7 || true) {
+            throw new \Exception('I failed randomly!!!!');
+        }
+
         $imagePostId = $addPonkaToImage->getImagePostId();
         $imagePost = $this->imagePostRepository->find($imagePostId);
 
@@ -43,7 +47,6 @@ class AddPonkaToImageHandler implements MessageHandlerInterface, LoggerAwareInte
             if ($this->logger) {
                 $this->logger->alert(sprintf('Image post %d was missing!', $imagePostId));
             }
-
 
             return;
         }
