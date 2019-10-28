@@ -11,6 +11,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
+            $messengerAuditLogger: '@monolog.logger.messenger_audit'
             # keep in sync with flysystem.yaml settings
             $publicAssetBaseUrl: '/uploads/images'
 
