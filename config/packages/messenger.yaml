@@ -17,7 +17,12 @@ framework:
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
+            async_priority_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: high
+
         routing:
             # Route your messages to the transports
-             'App\Message\AddPonkaToImage': async
+             'App\Message\AddPonkaToImage': async_priority_high
              'App\Message\DeletePhotoFile': async
