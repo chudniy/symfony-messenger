@@ -6,7 +6,7 @@
  * Time: 12:26
  */
 
-namespace App\Message;
+namespace App\Message\Command;
 
 class AddPonkaToImage
 {

@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: echudniy
- * Date: 24.10.19
- * Time: 17:00
- */
 
-namespace App\Message;
+namespace App\Message\Event;
 
-class DeletePhotoFile
+class ImagePostDeletedEvent
 {
     private $filename;
 
