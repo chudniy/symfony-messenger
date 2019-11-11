@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\ImagePost;
-use App\Message\AddPonkaToImage;
-use App\Message\DeleteImagePost;
+use App\Message\Command\AddPonkaToImage;
+use App\Message\Command\DeleteImagePost;
 use App\Repository\ImagePostRepository;
 use App\Photo\PhotoFileManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\DelayStamp;
+use Symfony\Component\Messenger\Transport\AmqpExt\AmqpStamp;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -62,7 +63,8 @@ class ImagePostController extends AbstractController
 
         $message = new AddPonkaToImage($imagePost->getId());
         $envelope = new Envelope($message, [
-            new DelayStamp(500)
+            new DelayStamp(1000),
+            new AmqpStamp('normal'),
         ]);
         $messageBus->dispatch($envelope);
 
